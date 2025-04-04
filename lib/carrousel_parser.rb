@@ -1,4 +1,5 @@
 require 'nokogiri'
+require 'ferrum'
 
 class CarrouselParser
   def initialize(html)
@@ -11,8 +12,16 @@ class CarrouselParser
     new(html).parse
   end
 
+  def rendered_html
+    browser = Ferrum::Browser.new
+    encoded = Base64.strict_encode64(html)
+    browser.goto("data:text/html;base64,#{encoded}")
+    browser.network.wait_for_idle
+    browser.body.tap { |x| File.write("rendered-html.html", x) }
+  end
+
   def parse
-    doc = Nokogiri::HTML.parse(html)
+    doc = Nokogiri::HTML.parse(rendered_html)
 
     results = doc.css("a").select do |a|
       children = a.element_children
