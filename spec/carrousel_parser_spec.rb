@@ -3,7 +3,7 @@ require_relative "../lib/carrousel_parser"
 require 'json'
 
 RSpec.describe CarrouselParser do
-  context  "with the van-gogh paintings example" do
+  context "with the van-gogh paintings example" do
     before(:context) do
       html = File.read("./files/van-gogh-paintings.html")
       @result = CarrouselParser.parse(html)

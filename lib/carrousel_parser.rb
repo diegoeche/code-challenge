@@ -49,4 +49,3 @@ class CarrouselParser
     }
   end
 end
-
