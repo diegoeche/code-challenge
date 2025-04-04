@@ -1,4 +1,36 @@
-# Extract Van Gogh Paintings Code Challenge
+# Challenge Notes
+
+## Testing:
+
+Here is my solution to the challenge. To setup you should be able to
+simply run:
+
+```
+bundle install
+rspec spec
+```
+
+## Comments on my Solution:
+
+I started with a naive approach using Nokogiri. Since classes are
+mostly obfuscated, I rely on detecting the "structure" of the
+carrousel items.
+
+After doing so, noticed that the image seem to point to a gif
+image. And is replaced later through JS. The easiest thing here was to
+run the javascript using Ferrum. This solution makes it much slower
+than the original pure Nokogiri parsing.
+
+Since is a bit slow, I decided to cache the evaluation throughout the
+tests, this I'd say is not something I typically do. And feels
+non-idiomatic.
+
+I added additional files for other google searches.
+
+
+---
+
+# Extract Van Gogh Paintings Code Challenge (Original)
 
 Goal is to extract a list of Van Gogh paintings from the attached Google search results page.
 
