@@ -25,7 +25,19 @@ Since is a bit slow, I decided to cache the evaluation throughout the
 tests, this I'd say is not something I typically do. And feels
 non-idiomatic.
 
-I added additional files for other google searches.
+I added additional files for other google searches. When I added an
+example for a books result that uses the same carrousel, I noticed the
+structure is different, but maybe still possible to use a
+generalization. For this, I "flatten" and used nokogiri to generate
+the terminal nodes of the matched anchors. This seem to work for both
+books/artworks.
+
+TODOs/Questions:
+
+1. Should the key of the result "artworks" reflect the title? Not
+   clear. Makes sense and should be easy to do.
+2. Movies seem to follow a different structure. Unsure if it's _the
+   same carousel_ Might work on it to get some interview brownie points.
 
 
 ---
