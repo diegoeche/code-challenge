@@ -41,18 +41,18 @@ RSpec.describe CarrouselParser do
       expect(@result['artworks'].length).to eq(50)
     end
 
-    ["name", "extensions", "link", "image"].each do |attribute|
-      let(:expected_output) {
-        {
-          "artworks" => [
-            "name" => "Olympia",
-            "extensions" => ["1863"],
-            "link" => String,
-            "image" => String
-          ]
-        }
+    let(:expected_output) {
+      {
+        "artworks" => [
+          "name" => "Olympia",
+          "extensions" => ["1863"],
+          "link" => starting_with("https://www.google.com"),
+          "image" => starting_with("data:image/jpeg;base64,")
+        ]
       }
+    }
 
+    ["name", "extensions", "link", "image"].each do |attribute|
       it "matches the #{attribute} of the first image to the" do
         result_attribute = @result["artworks"][0][attribute]
         expected_attribute = expected_output["artworks"][0][attribute]
@@ -74,19 +74,19 @@ RSpec.describe CarrouselParser do
       expect(@result['artworks'].length).to eq(12)
     end
 
-    ["name", "extensions", "link", "image"].each do |attribute|
-      let(:expected_output) {
-        {
-          "artworks" => [
-            "name" => "Crash",
-            "extensions" => ["1973"],
-            "link" => String,
-            "image" => String
-          ]
-        }
+    let(:expected_output) {
+      {
+        "artworks" => [
+          "name" => "Crash",
+          "extensions" => ["1973"],
+          "link" => starting_with("https://www.google.com"),
+          "image" => starting_with("data:image/jpeg;base64,")
+        ]
       }
+    }
 
-      it "matches the #{attribute} of the first image to the" do
+    ["name", "extensions", "link", "image"].each do |attribute|
+      it "matches the #{attribute} of the first image to document" do
         result_attribute = @result["artworks"][0][attribute]
         expected_attribute = expected_output["artworks"][0][attribute]
 
