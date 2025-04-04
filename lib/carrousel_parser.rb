@@ -37,20 +37,23 @@ class CarrouselParser
   end
 
   def matches_structure?(anchor)
-    children = anchor.element_children
+    children = terminal_nodes(anchor)
 
     img = children[0]&.name == "img"
     outer_div = children[1]&.name == "div"
-    inner_divs = children[1]&.element_children&.length == 2
+    inner_divs = children[2]&.name == "div"
 
     img && outer_div && inner_divs
   end
 
   def extract_content(anchor)
-    img = anchor.element_children[0]
-    img_url = img["data-iurl"] || img["data-src"] || img["src"]
+    children = terminal_nodes(anchor)
 
-    title, extensions = anchor.element_children[1].element_children.map(&:text)
+    img = children[0]
+    img_url = img["src"]
+
+    title = children[1].text
+    extensions = children[2].text
 
     {
       'name' => title,
@@ -58,5 +61,9 @@ class CarrouselParser
       'link' => "https://www.google.com#{anchor["href"]}",
       'image' => img_url
     }
+  end
+
+  def terminal_nodes(node)
+    node.css("*").select { |el| el.element_children.empty? }
   end
 end

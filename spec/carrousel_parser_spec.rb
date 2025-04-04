@@ -61,4 +61,37 @@ RSpec.describe CarrouselParser do
       end
     end
   end
+
+  context "with the ballard books example" do
+    before(:context) do
+      html = File.read("./files/ballard-books.html")
+      # I'd normally not cache things through tests due to state leaking
+      # but in this case it does save a lot of time
+      @result = described_class.parse(html)
+    end
+
+    it "parses the HTML and returns the right amount of elements" do
+      expect(@result['artworks'].length).to eq(12)
+    end
+
+    ["name", "extensions", "link", "image"].each do |attribute|
+      let(:expected_output) {
+        {
+          "artworks" => [
+            "name" => "Crash",
+            "extensions" => ["1973"],
+            "link" => String,
+            "image" => String
+          ]
+        }
+      }
+
+      it "matches the #{attribute} of the first image to the" do
+        result_attribute = @result["artworks"][0][attribute]
+        expected_attribute = expected_output["artworks"][0][attribute]
+
+        expect(result_attribute).to match(expected_attribute)
+      end
+    end
+  end
 end
