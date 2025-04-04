@@ -16,7 +16,7 @@ class CarrouselParser
     doc = Nokogiri::HTML.parse(rendered_html)
 
     results = doc.css("a").select do |a|
-      self.matches_structure?(a)
+      matches_structure?(a)
     end.map do |a|
       extract_content(a)
     end

@@ -48,7 +48,7 @@ RSpec.describe CarrouselParser do
         }
       }
 
-      it "matches the #{attribute} of the first image to the " do
+      it "matches the #{attribute} of the first image to the" do
         result_attribute = @result["artworks"][0][attribute]
         expected_attribute = expected_output["artworks"][0][attribute]
 
