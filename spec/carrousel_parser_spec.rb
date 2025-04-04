@@ -6,6 +6,8 @@ RSpec.describe CarrouselParser do
   context "with the van-gogh paintings example" do
     before(:context) do
       html = File.read("./files/van-gogh-paintings.html")
+
+      # I'd normally not do this:
       @result = CarrouselParser.parse(html)
     end
 
@@ -29,6 +31,7 @@ RSpec.describe CarrouselParser do
   context "with the manet paintings example" do
     before(:context) do
       html = File.read("./files/manet-paintings.html")
+      # I'd normally not do this:
       @result = CarrouselParser.parse(html)
     end
 
