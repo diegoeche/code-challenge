@@ -105,3 +105,9 @@ Style/StringLiteralsInInterpolation:
 # SupportedStyles: percent, brackets
 Style/WordArray:
   EnforcedStyle: brackets
+
+RSpec/BeforeAfterAll:
+  Enabled: false
+
+RSpec/InstanceVariable:
+  Enabled: false

@@ -7,8 +7,9 @@ RSpec.describe CarrouselParser do
     before(:context) do
       html = File.read("./files/van-gogh-paintings.html")
 
-      # I'd normally not do this:
-      @result = CarrouselParser.parse(html)
+      # I'd normally not cache things through tests due to state leaking
+      # but in this case it does save a lot of time
+      @result = described_class.parse(html)
     end
 
     it "parses the HTML and returns the right amount of elements" do
@@ -31,8 +32,9 @@ RSpec.describe CarrouselParser do
   context "with the manet paintings example" do
     before(:context) do
       html = File.read("./files/manet-paintings.html")
-      # I'd normally not do this:
-      @result = CarrouselParser.parse(html)
+      # I'd normally not cache things through tests due to state leaking
+      # but in this case it does save a lot of time
+      @result = described_class.parse(html)
     end
 
     it "parses the HTML and returns the right amount of elements" do
