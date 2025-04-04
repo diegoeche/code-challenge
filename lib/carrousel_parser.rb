@@ -17,7 +17,7 @@ class CarrouselParser
     encoded = Base64.strict_encode64(html)
     browser.goto("data:text/html;base64,#{encoded}")
     browser.network.wait_for_idle
-    browser.body.tap { |x| File.write("rendered-html.html", x) }
+    browser.body
   end
 
   def parse
