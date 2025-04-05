@@ -21,10 +21,11 @@ RSpec.describe CarrouselParser do
         expected_output_string = File.read("./files/expected-array.json")
         expected_parsed_output = JSON.parse(expected_output_string)
 
-        result_attribute = @result["artworks"][0][attribute]
-        expected_attribute = expected_parsed_output["artworks"][0][attribute]
-
-        expect(result_attribute).to eq(expected_attribute)
+        expected_parsed_output.each_with_index do |_, index|
+          result_attribute = @result["artworks"][index][attribute]
+          expected_attribute = expected_parsed_output["artworks"][index][attribute]
+          expect(result_attribute).to eq(expected_attribute)
+        end
       end
     end
   end
